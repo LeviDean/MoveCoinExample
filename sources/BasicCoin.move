@@ -30,10 +30,10 @@ module NamedAddr::BasicCoin{
     }
 
     spec publish_balance {
-        include Schema_publish<CoinType> {addr: signer::address_of(account), amount: 0};
+        include PublishSchema<CoinType> {addr: signer::address_of(account), amount: 0};
     }
 
-    spec schema Schema_publish<CoinType> {
+    spec schema PublishSchema<CoinType> {
         addr: address;
         amount: u64;
 
@@ -52,7 +52,7 @@ module NamedAddr::BasicCoin{
     }
 
     spec mint {
-        include Schema_deposit<CoinType> {addr: mint_addr, amount};
+        include DepositSchema<CoinType> {addr: mint_addr, amount};
     }
 
 
@@ -123,10 +123,10 @@ module NamedAddr::BasicCoin{
     }
 
     spec deposit {
-        include Schema_deposit<CoinType> {addr, amount: check.value};
+        include DepositSchema<CoinType> {addr, amount: check.value};
     }
 
-    spec schema Schema_deposit<CoinType> {
+    spec schema DepositSchema<CoinType> {
         addr: address;
         amount: u64;
 
